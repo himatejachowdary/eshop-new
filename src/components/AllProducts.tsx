@@ -5,9 +5,13 @@ import productPhone from "@/assets/product-phone.jpg";
 import productHeadphones from "@/assets/product-headphones.jpg";
 import productLaptop from "@/assets/product-laptop.jpg";
 import productWatch from "@/assets/product-watch.jpg";
+import productCamera from "@/assets/product-camera.jpg";
+import productShoes from "@/assets/product-shoes.jpg";
+import productKeyboard from "@/assets/product-keyboard.jpg";
+import productPerfume from "@/assets/product-perfume.jpg";
 
-export const FeaturedProducts = () => {
-  const featuredProducts = [
+export const AllProducts = () => {
+  const allProducts = [
     {
       id: "1",
       name: "Premium Wireless Smartphone",
@@ -47,33 +51,82 @@ export const FeaturedProducts = () => {
       rating: 4.6,
       reviews: 203,
       discount: 20
+    },
+    {
+      id: "5",
+      name: "Professional Digital Camera",
+      price: 899,
+      originalPrice: 1099,
+      image: productCamera,
+      rating: 4.9,
+      reviews: 67,
+      discount: 18,
+      isNew: true
+    },
+    {
+      id: "6",
+      name: "Athletic Running Shoes",
+      price: 129,
+      originalPrice: 179,
+      image: productShoes,
+      rating: 4.5,
+      reviews: 312,
+      discount: 28
+    },
+    {
+      id: "7",
+      name: "RGB Gaming Mechanical Keyboard",
+      price: 149,
+      originalPrice: 199,
+      image: productKeyboard,
+      rating: 4.7,
+      reviews: 128,
+      discount: 25
+    },
+    {
+      id: "8",
+      name: "Luxury Fragrance Collection",
+      price: 89,
+      originalPrice: 120,
+      image: productPerfume,
+      rating: 4.8,
+      reviews: 95,
+      discount: 26
     }
   ];
 
   return (
-    <section id="products" className="py-16 bg-background">
+    <section id="all-products" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12">
           <div>
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
-              Featured Products
+              All Products
             </h2>
             <p className="text-muted-foreground">
-              Discover our handpicked selection of premium products
+              Explore our complete collection of premium products
             </p>
           </div>
           <Button variant="outline" className="mt-4 sm:mt-0">
-            View All
+            Filter & Sort
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredProducts.map((product) => (
+          {allProducts.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
+        </div>
+
+        {/* Load More */}
+        <div className="text-center mt-12">
+          <Button variant="outline" size="lg">
+            Load More Products
+            <ArrowRight className="h-4 w-4" />
+          </Button>
         </div>
       </div>
     </section>

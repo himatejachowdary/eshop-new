@@ -64,7 +64,7 @@ export const CategorySection = () => {
   ];
 
   return (
-    <section className="py-16 bg-muted/30">
+    <section id="categories" className="py-16 bg-muted/30">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12">
@@ -81,7 +81,15 @@ export const CategorySection = () => {
           {categories.map((category) => {
             const Icon = category.icon;
             return (
-              <Card key={category.name} className="group cursor-pointer hover:shadow-medium transition-all duration-300 border-border">
+              <Card 
+                key={category.name} 
+                className="group cursor-pointer hover:shadow-medium transition-all duration-300 border-border"
+                onClick={() => {
+                  document.getElementById('products')?.scrollIntoView({ 
+                    behavior: 'smooth' 
+                  });
+                }}
+              >
                 <CardContent className="p-6 text-center">
                   <div className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center ${category.color}`}>
                     <Icon className="h-8 w-8" />

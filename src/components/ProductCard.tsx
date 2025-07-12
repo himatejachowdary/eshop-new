@@ -2,6 +2,8 @@ import { Heart, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductCardProps {
   id: string;
@@ -16,6 +18,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({
+  id,
   name,
   price,
   originalPrice,
@@ -25,6 +28,25 @@ export const ProductCard = ({
   discount,
   isNew
 }: ProductCardProps) => {
+  const { dispatch } = useCart();
+  const { toast } = useToast();
+
+  const handleAddToCart = () => {
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: {
+        id,
+        name,
+        price,
+        image
+      }
+    });
+    
+    toast({
+      title: "Added to cart",
+      description: `${name} has been added to your cart.`,
+    });
+  };
   return (
     <Card className="group overflow-hidden border-border hover:shadow-medium transition-all duration-300">
       <div className="relative overflow-hidden">
@@ -89,7 +111,7 @@ export const ProductCard = ({
         </div>
 
         {/* Add to Cart */}
-        <Button variant="cart" className="w-full">
+        <Button variant="cart" className="w-full" onClick={handleAddToCart}>
           Add to Cart
         </Button>
       </CardContent>

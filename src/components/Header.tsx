@@ -2,8 +2,14 @@ import { ShoppingCart, Search, User, Menu, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
+import { useState } from "react";
+import { CartSidebar } from "./CartSidebar";
 
 export const Header = () => {
+  const { state } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="container mx-auto px-4">
@@ -35,14 +41,21 @@ export const Header = () => {
               <User className="h-5 w-5" />
             </Button>
 
-            <Button variant="ghost" size="icon" className="relative">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative"
+              onClick={() => setIsCartOpen(true)}
+            >
               <ShoppingCart className="h-5 w-5" />
-              <Badge 
-                variant="destructive" 
-                className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
-              >
-                3
-              </Badge>
+              {state.itemCount > 0 && (
+                <Badge 
+                  variant="destructive" 
+                  className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
+                >
+                  {state.itemCount}
+                </Badge>
+              )}
             </Button>
 
             <Button variant="ghost" size="icon" className="md:hidden">
@@ -63,6 +76,8 @@ export const Header = () => {
           </div>
         </div>
       </div>
+      
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </header>
   );
 };
