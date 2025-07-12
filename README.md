@@ -48,5 +48,13 @@ cd eshop-clone
 ✍️ Credits
 Originally developed by @himatejachowdary.
 
+---
+
+## 👨‍💻 Author
+
+**HIMA TEJA CHERUKUMALLI**  
+Customized and enhanced the project based on open-source templates.  
+GitHub: [@himatejachowdary](https://github.com/himatejachowdary)
+
 
 
